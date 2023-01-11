@@ -1,0 +1,89 @@
+---
+title : "Assignment1"
+author: "Mathan Kumar"
+date: :"2022-08-24"
+output: html_document
+---
+
+```{r}
+library(ISLR)
+```
+
+1.	This exercise involves the Auto data set studied in the lab. Make sure that the missing values have been removed from the data.
+
+ (a) Which of the predictors are quantitative, and which are qualitative?
+ 
+```{r}
+Auto = na.omit(Auto)
+Auto
+```
+
+```{r}
+str(Auto)
+```
+      mpg	        :   quantitative
+      cylinders	  :   quantitative
+      displacement:   quantitative
+      horsepower	:   quantitative
+      weight	    :   quantitative
+      acceleration:   quantitative
+      year	      :   quantitative
+      origin	    :   qualitative
+      name	      :   qualitative
+
+
+ 
+(b) What is the range of each quantitative predictor? You can answer this using the range() function.
+
+```{r}
+apply(Auto[,1:7], 2, range)
+```
+
+(c) What is the mean and standard deviation of each quantitative predictor? 
+
+```{r}
+sapply(Auto[, 1:7], mean)
+sapply(Auto[, 1:7], sd)
+```
+
+(d)	 Now remove the 10th through 85th observations. What is the range, mean, and standard deviation of each predictor in the subset of the data that remains? 
+
+```{r}
+apply(Auto[ -c (10:85), 1:8],2, range)
+```
+```{r}
+apply(Auto[ -c (10:85), -9],2, mean)
+```
+```{r}
+apply(Auto[ -c (10:85), -9],2, sd)
+```
+
+
+
+(e)	Using the full data set, investigate the predictors graphically, using scatter plots or other tools of your choice. Create some plots highlighting the relationships among the predictors. Comment on your findings.
+
+```{r}
+ellac <- (Auto[sapply(Auto, is.numeric)])
+pairs(ellac)
+```
+
+(f) Suppose that we wish to predict gas mileage (mpg) on the basis of the other variables. Do your plots suggest that any of the other variables might be useful in predicting mpg? Justify your answer.
+
+
+```{r}
+
+plot(Auto$mpg, Auto$displacement )
+plot(Auto$mpg , Auto$cylinders)
+plot(Auto$mpg , Auto$horsepower)
+plot(Auto$mpg , Auto$weight)
+plot(Auto$mpg , Auto$acceleration)
+plot(Auto$mpg , Auto$year)
+plot(Auto$mpg , Auto$origin)
+
+```
+
+
+
+
+
+
